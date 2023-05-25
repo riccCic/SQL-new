@@ -19,3 +19,12 @@ WHERE id = 2;
 
 
 TRUNCATE TABLE clienti;
+
+-- domande
+Nella tabella Customers, la colonna customer_id è una buona chiave primaria perché è unica per ogni cliente ed è già definita come tale.
+
+Nella tabella Products, non c’è una colonna che sia una buona chiave primaria. Potresti aggiungere una colonna product_id con proprietà AUTO_INCREMENT e NOT NULL per creare una chiave primaria univoca per ogni prodotto.
+
+Nella tabella Orders, la colonna order_id è una buona chiave primaria perché è unica per ogni ordine ed è già definita come tale.
+
+Nella tabella Product_Orders, la colonna order_id è una buona chiave primaria perché è unica per ogni ordine di prodotto ed è già definita come tale.
