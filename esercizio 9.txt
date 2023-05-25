@@ -1,0 +1,21 @@
+CREATE TABLE clienti (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255),
+    saldo FLOAT
+);
+
+
+INSERT INTO clienti (nome, saldo)
+VALUES ('Mario Rossi', 100.0),
+       ('Luigi Bianchi', 200.0);
+
+UPDATE clienti
+SET saldo = 150.0
+WHERE id = 1;
+
+
+DELETE FROM clienti
+WHERE id = 2;
+
+
+TRUNCATE TABLE clienti;
