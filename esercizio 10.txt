@@ -1,0 +1,89 @@
+CREATE TABLE MEAL_INGREDIENTS (
+    meal_name VARCHAR(255),
+    ingredient_name VARCHAR(255),
+    FOREIGN KEY (meal_name) REFERENCES MEAL(name),
+    FOREIGN KEY (ingredient_name) REFERENCES INGREDIENT(name)
+);
+
+
+query-------------
+
+-- esercizio1
+SELECT DISTINCT meal_name
+FROM MEAL_INGREDIENTS
+WHERE ingredient_name = 'Garlic';
+
+-- esercizio2
+SELECT COUNT(DISTINCT meal_name)
+FROM MEAL_INGREDIENTS
+INNER JOIN INGREDIENT
+ON MEAL_INGREDIENTS.ingredient_name = INGREDIENT.name
+WHERE vegetarian = true;
+
+-- esercizio3
+SELECT DISTINCT meal_name
+FROM MEAL_INGREDIENTS
+INNER JOIN INGREDIENT
+ON MEAL_INGREDIENTS.ingredient_name = INGREDIENT.name
+WHERE gluten_free = true AND vegan = true;
+
+-- esercizio4
+SELECT AVG(ingredient_count)
+FROM (
+    SELECT meal_name, COUNT(*) AS ingredient_count
+    FROM MEAL_INGREDIENTS
+    GROUP BY meal_name
+) AS subquery;
+
+-- esercizio5
+SELECT meal_name
+FROM (
+    SELECT meal_name, COUNT(*) AS ingredient_count
+    FROM MEAL_INGREDIENTS
+    GROUP BY meal_name
+) AS subquery
+WHERE ingredient_count > 3;
+
+----------------------------------------------------------
+
+-- Utilizzando le seguenti definizioni di tabella, scrivi un inner join per le due tabelle
+CREATE TABLE CUSTOMER (
+    CUSTOMER_ID INT,
+    NAME VARCHAR(255),
+    ADDRESS VARCHAR(255)
+);
+CREATE TABLE ORDER (
+    ORDER_ID INT,
+    CUSTOMER_ID INT,
+    ORDER_DATE DATE,
+    TOTAL_COST DECIMAL(10,2)
+);
+
+
+-- Utilizzando le seguenti definizioni di tabella, scrivi un inner join per le due tabelle
+CREATE TABLE PRODUCT (
+    PRODUCT_ID INT,
+    NAME VARCHAR(255),
+    PRICE DECIMAL(10,2)
+);
+CREATE TABLE INVENTORY (
+    PRODUCT_ID INT,
+    STORE_ID INT,
+    QUANTITY INT
+);
+query--------------------------------------------
+
+-- eserciozio6
+SELECT *
+FROM CUSTOMER
+INNER JOIN ORDER
+ON CUSTOMER.CUSTOMER_ID = ORDER.CUSTOMER_ID;
+
+-- esercizio7
+SELECT *
+FROM PRODUCT
+INNER JOIN INVENTORY
+ON PRODUCT.PRODUCT_ID = INVENTORY.PRODUCT_ID;
+
+
+
